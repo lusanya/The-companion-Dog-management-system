@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+   {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body >
+
+<div class="loginbody">
+    <div class="logincontainer">
+         {% if messages %}
+            <div class="messages.tags">
+                {% for message in messages %}
+                    <div class="{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <h2>Login</h2>
+        <!-- Login Form -->
+        <form method="POST"  class="loginform"  action="{% url 'login' %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit" class="loginbutton">Login</button>
+        </form>
+
+        <p>Don't have an account?  <a href="{% url 'register' %}"> Register here</a></p>
+           <button type="submit" class="resetpasswordbutton"><a href="password_reset/">Forgot Password?</a></button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+ {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="{% url 'dog_profiles' %}" class="nav-link"><i class="fa fa-paw"></i> Dogs</a></li>
+        <li><a href="{% url 'cart'%}" class="nav-link"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+        <li><a href="#profile" class="nav-link"><i class="fa fa-user"></i> Profile</a></li>
+        <li><a href="/logout/" class="nav-link"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </nav>
+</div>
+
+<div>
+      <h1>Order Confirmation</h1>
+    <p>Thank you for your order! Here are the details:</p>
+</div>
+<div class="dog-profiles">
+
+    {% for dog in order.dogs.all %}
+        <div class="confirm_data">
+            <h2>{{ dog.name }}</h2>
+            <p>{{ dog.description }}</p>
+            <img src="{{ dog.image.url }}" alt="{{ dog.name }}" width="200">
+        </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

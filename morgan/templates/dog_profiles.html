@@ -1,0 +1,62 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dog Profiles</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+  <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="{% url 'dog_profiles' %}" class="nav-link"><i class="fa fa-paw"></i> Dogs</a></li>
+        <li><a href="{% url 'cart'%}" class="nav-link"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+        <li><a href="#profile" class="nav-link"><i class="fa fa-user"></i> Profile</a></li>
+        <li><a href="/logout/" class="nav-link"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </nav>
+
+
+
+  <h1>Dog Profiles</h1>
+  <div class="dog-profiles">
+    {% for dog in dogs %}
+      <div class="dog-profile">
+        <img src="{{ dog.image.url }}" alt="{{ dog.name }}">
+        <h2>{{ dog.name }}</h2>
+        <p>{{ dog.description }}</p>
+        {% if dog.video_url %}
+          <a href="{{ dog.video_url }}" target="_blank">Watch video about {{ dog.name }}</a>
+        {% endif %}
+        <a href="{% url 'add_to_cart' dog.id %}" class="add-to-cart">Add to Cart</a>
+      </div>
+    {% endfor %}
+  </div>
+
+    <div>
+      <section>
+           <footer>
+                <div class="footer-container">
+                  <ul class="social-icons">
+                    <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/morgan-wanjala-a7054833b/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li><a href="https://www.youtube.com/@morganwanjala " target="_blank"><i class="fab fa-youtube"></i></a></li>
+                  </ul>
+                </div>
+
+                <div class="copyright">
+                          <p>&copy; 2024 Companion Dog Management system. All rights reserved.</p>
+                </div>
+           </footer>
+      </section>
+    </div>
+</body>
+</html>
